@@ -8,12 +8,12 @@
   <link rel="icon" type="image/png" href="imagens/favicon.png">
   <link rel="preload" href="fontes/NotoSerifDisplay-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
+  <!-- Navbar fixa. No celular, o menu abre pelo link #menu (seletor :target no CSS) -->
   <header class="topo">
     <nav class="navbar container" aria-label="Navegação principal">
       <a class="marca" href="#inicio" aria-label="Movimento Longevo, voltar ao início">
@@ -21,17 +21,23 @@
         <span>Movimento<br>Longevo</span>
       </a>
 
-      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
-      <label for="menu-toggle" class="menu-botao" aria-hidden="true"><span></span><span></span><span></span></label>
+      <a class="menu-botao" href="#menu" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </a>
 
-      <ul class="menu">
-        <li><a href="#inicio">Início</a></li>
-        <li><a href="#sobre">Sobre Nós</a></li>
-        <li><a href="#projetos">Nossos Projetos</a></li>
-        <li><a href="#doar">Como Doar</a></li>
-        <li><a href="#contato">Contato</a></li>
-        <li class="menu-doar"><a class="btn btn-laranja" href="#doar">Doe agora</a></li>
-      </ul>
+      <div class="menu" id="menu">
+        <a class="menu-fechar" href="#fechar-menu" aria-label="Fechar menu">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#projetos">Nossos Projetos</a></li>
+          <li><a href="#doar">Como Doar</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li class="menu-doar"><a class="btn btn-laranja" href="#doar">Doe agora</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
@@ -59,14 +65,9 @@
 
     <!-- ===================== IMPACTO ===================== -->
     <section class="impacto" aria-labelledby="titulo-impacto">
-      <div class="container">
-        <h2 id="titulo-impacto" class="impacto-titulo">O que fizemos em 2025</h2>
-        <ul class="impacto-lista">
-          <li><strong data-alvo="620">620</strong><span>idosos se exercitando toda semana</span></li>
-          <li><strong data-alvo="14">14</strong><span>instituições parceiras no sertão paraibano</span></li>
-          <li><strong data-alvo="85">85</strong><span>cuidadores formados para conduzir as aulas</span></li>
-          <li><strong data-alvo="40">40</strong><span>profissionais voluntários</span></li>
-        </ul>
+      <div class="container impacto-grade">
+        <h2 id="titulo-impacto" class="impacto-titulo">O ano de 2025</h2>
+        <p class="impacto-frase"><strong>620 idosos</strong> se exercitaram toda semana em <strong>14 instituições</strong> do sertão paraibano. <strong>85 cuidadores</strong> aprenderam a conduzir as aulas, com o apoio de <strong>40 voluntários</strong>.</p>
       </div>
     </section>
 
@@ -109,40 +110,83 @@
         </div>
       </div>
 
-      <div class="historia container" role="region" aria-roledescription="carrossel" aria-label="Depoimentos">
-        <div class="historia-foto revela-foto">
-          <img class="ativa" src="imagens/depoimento-francisca.jpg" alt="Dona Francisca, de blusa rosa, sorrindo durante aula de dança sentada" width="600" height="750" style="--foco: 20% 30%">
-          <img src="imagens/depoimento-antonio.jpg" alt="Seu Antônio, de chapéu e bengala, caminhando no jardim" width="600" height="750" loading="lazy">
-          <img src="imagens/depoimento-marta.jpg" alt="Marta, técnica de enfermagem de uniforme azul, anotando em um caderno" width="600" height="750" loading="lazy">
-          <img src="imagens/depoimento-lucia.jpg" alt="Lúcia, de blusa bege e óculos, em reunião diante de um notebook" width="600" height="750" loading="lazy">
-        </div>
+      <!-- Depoimentos: faixa com rolagem lateral e encaixe (scroll-snap).
+           As setas são links para o depoimento anterior e o seguinte. -->
+      <div class="depoimentos container" role="region" aria-roledescription="carrossel" aria-label="Depoimentos">
+        <div class="dep-faixa">
 
-        <div class="historia-texto">
-          <div class="depoimentos" aria-live="polite">
-            <blockquote class="depoimento ativo" aria-roledescription="depoimento" aria-label="1 de 4">
-              <p>Quando cheguei aqui eu não levantava o braço para pentear o cabelo. Hoje sou a primeira a chegar na aula de quarta.</p>
-              <footer><cite>Dona Francisca, 81 anos</cite><span>Moradora de uma ILPI parceira desde 2022</span></footer>
-            </blockquote>
-            <blockquote class="depoimento" aria-roledescription="depoimento" aria-label="2 de 4">
-              <p>Eu passava o dia no quarto. Agora dou duas voltas no jardim antes do almoço, e a bengala é mais companhia do que apoio.</p>
-              <footer><cite>Seu Antônio, 77 anos</cite><span>Morador de uma ILPI parceira em Sousa</span></footer>
-            </blockquote>
-            <blockquote class="depoimento" aria-roledescription="depoimento" aria-label="3 de 4">
-              <p>Antes eu tinha medo de machucar alguém. Depois da formação, eu mesma conduzo o alongamento nos dias em que a professora não vem.</p>
-              <footer><cite>Marta Oliveira</cite><span>Técnica de enfermagem, cuidadora há nove anos</span></footer>
-            </blockquote>
-            <blockquote class="depoimento" aria-roledescription="depoimento" aria-label="4 de 4">
-              <p>O exercício deixou de ser um evento e virou rotina da casa. Hoje ele está no nosso planejamento e no nosso orçamento.</p>
-              <footer><cite>Lúcia Andrade</cite><span>Diretora de uma ILPI parceira em Cajazeiras</span></footer>
-            </blockquote>
-          </div>
+          <article class="dep" id="dep-1" aria-label="Depoimento 1 de 4">
+            <div class="dep-foto">
+              <img src="imagens/depoimento-francisca.jpg" alt="Dona Francisca, de blusa rosa, sorrindo durante aula de dança sentada" width="600" height="750" style="object-position: 20% 30%">
+            </div>
+            <div class="dep-cartao">
+              <blockquote>
+                <p>Quando cheguei aqui eu não levantava o braço para pentear o cabelo. Hoje sou a primeira a chegar na aula de quarta.</p>
+                <footer><cite>Dona Francisca, 81 anos</cite><span>Moradora de uma ILPI parceira desde 2022</span></footer>
+              </blockquote>
+              <nav class="dep-controles" aria-label="Navegar pelos depoimentos">
+                <a href="#dep-4" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <p class="dep-contador"><span>01</span> / 04</p>
+                <a href="#dep-2" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="dep-progresso" style="--p: 1" aria-hidden="true"></span>
+              </nav>
+            </div>
+          </article>
 
-          <div class="dep-controles">
-            <button type="button" class="dep-ant" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <p class="dep-contador" aria-hidden="true"><span class="dep-atual">01</span> / 04</p>
-            <button type="button" class="dep-prox" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <div class="dep-trilho" aria-hidden="true"><span></span></div>
-          </div>
+          <article class="dep" id="dep-2" aria-label="Depoimento 2 de 4">
+            <div class="dep-foto">
+              <img src="imagens/depoimento-antonio.jpg" alt="Seu Antônio, de chapéu e bengala, caminhando no jardim" width="600" height="750" loading="lazy">
+            </div>
+            <div class="dep-cartao">
+              <blockquote>
+                <p>Eu passava o dia no quarto. Agora dou duas voltas no jardim antes do almoço, e a bengala é mais companhia do que apoio.</p>
+                <footer><cite>Seu Antônio, 77 anos</cite><span>Morador de uma ILPI parceira em Sousa</span></footer>
+              </blockquote>
+              <nav class="dep-controles" aria-label="Navegar pelos depoimentos">
+                <a href="#dep-1" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <p class="dep-contador"><span>02</span> / 04</p>
+                <a href="#dep-3" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="dep-progresso" style="--p: 2" aria-hidden="true"></span>
+              </nav>
+            </div>
+          </article>
+
+          <article class="dep" id="dep-3" aria-label="Depoimento 3 de 4">
+            <div class="dep-foto">
+              <img src="imagens/depoimento-marta.jpg" alt="Marta, técnica de enfermagem de uniforme azul, anotando em um caderno" width="600" height="750" loading="lazy">
+            </div>
+            <div class="dep-cartao">
+              <blockquote>
+                <p>Antes eu tinha medo de machucar alguém. Depois da formação, eu mesma conduzo o alongamento nos dias em que a professora não vem.</p>
+                <footer><cite>Marta Oliveira</cite><span>Técnica de enfermagem, cuidadora há nove anos</span></footer>
+              </blockquote>
+              <nav class="dep-controles" aria-label="Navegar pelos depoimentos">
+                <a href="#dep-2" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <p class="dep-contador"><span>03</span> / 04</p>
+                <a href="#dep-4" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="dep-progresso" style="--p: 3" aria-hidden="true"></span>
+              </nav>
+            </div>
+          </article>
+
+          <article class="dep" id="dep-4" aria-label="Depoimento 4 de 4">
+            <div class="dep-foto">
+              <img src="imagens/depoimento-lucia.jpg" alt="Lúcia, de blusa bege e óculos, em reunião diante de um notebook" width="600" height="750" loading="lazy">
+            </div>
+            <div class="dep-cartao">
+              <blockquote>
+                <p>O exercício deixou de ser um evento e virou rotina da casa. Hoje ele está no nosso planejamento e no nosso orçamento.</p>
+                <footer><cite>Lúcia Andrade</cite><span>Diretora de uma ILPI parceira em Cajazeiras</span></footer>
+              </blockquote>
+              <nav class="dep-controles" aria-label="Navegar pelos depoimentos">
+                <a href="#dep-3" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <p class="dep-contador"><span>04</span> / 04</p>
+                <a href="#dep-1" aria-label="Voltar ao primeiro depoimento"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="dep-progresso" style="--p: 4" aria-hidden="true"></span>
+              </nav>
+            </div>
+          </article>
+
         </div>
       </div>
 
@@ -187,42 +231,55 @@
           <p>Cada frente responde a um dos obstáculos. Clique nas fotos para ver maior.</p>
         </header>
 
+        <!-- Cada foto é um link para a sua janela ampliada (#foto-1 a #foto-6) -->
         <ul class="mosaico">
           <li class="m-grande">
-            <figure>
-              <img src="imagens/alongamento-em-grupo.jpg" alt="Grupo de idosos fazendo alongamento sentados em círculo, com uma professora de Educação Física" loading="lazy" width="1200" height="800">
-              <figcaption><h3>Alongamento em grupo</h3><p>Aulas semanais com profissional habilitado, adaptadas a cada nível de mobilidade.</p></figcaption>
-            </figure>
+            <a href="#foto-1" aria-label="Ampliar foto: Alongamento em grupo">
+              <figure>
+                <img src="imagens/alongamento-em-grupo.jpg" alt="Grupo de idosos fazendo alongamento sentados em círculo, com uma professora de Educação Física" loading="lazy" width="1200" height="800">
+                <figcaption><h3>Alongamento em grupo</h3><p>Aulas semanais com profissional habilitado, adaptadas a cada nível de mobilidade.</p></figcaption>
+              </figure>
+            </a>
           </li>
           <li>
-            <figure>
-              <img src="imagens/kit-de-materiais.jpg" alt="Mesa com faixas elásticas, bastões, halteres leves, bolas e cones" loading="lazy" width="1200" height="800">
-              <figcaption><h3>Kit de materiais</h3><p>Faixas, bastões e bolas entregues a cada casa parceira.</p></figcaption>
-            </figure>
+            <a href="#foto-2" aria-label="Ampliar foto: Kit de materiais">
+              <figure>
+                <img src="imagens/kit-de-materiais.jpg" alt="Mesa com faixas elásticas, bastões, halteres leves, bolas e cones" loading="lazy" width="1200" height="800">
+                <figcaption><h3>Kit de materiais</h3><p>Faixas, bastões e bolas entregues a cada casa parceira.</p></figcaption>
+              </figure>
+            </a>
           </li>
           <li class="m-alta">
-            <figure>
-              <img src="imagens/caminhada-no-jardim.jpg" alt="Idosos caminhando com bengala e andador, acompanhados de cuidadores em um jardim" loading="lazy" width="1200" height="800">
-              <figcaption><h3>Caminhada no jardim</h3><p>Passeios guiados que unem exercício, sol e conversa.</p></figcaption>
-            </figure>
+            <a href="#foto-3" aria-label="Ampliar foto: Caminhada no jardim">
+              <figure>
+                <img src="imagens/caminhada-no-jardim.jpg" alt="Idosos caminhando com bengala e andador, acompanhados de cuidadores em um jardim" loading="lazy" width="1200" height="800">
+                <figcaption><h3>Caminhada no jardim</h3><p>Passeios guiados que unem exercício, sol e conversa.</p></figcaption>
+              </figure>
+            </a>
           </li>
           <li>
-            <figure>
-              <img src="imagens/oficina-com-cuidadores.jpg" alt="Cuidadores e idosos praticando juntos um exercício de braços, sentados em semicírculo" loading="lazy" width="1200" height="800">
-              <figcaption><h3>Oficina com cuidadores</h3><p>A equipe da casa aprende a conduzir as atividades.</p></figcaption>
-            </figure>
+            <a href="#foto-4" aria-label="Ampliar foto: Oficina com cuidadores">
+              <figure>
+                <img src="imagens/oficina-com-cuidadores.jpg" alt="Cuidadores e idosos praticando juntos um exercício de braços, sentados em semicírculo" loading="lazy" width="1200" height="800">
+                <figcaption><h3>Oficina com cuidadores</h3><p>A equipe da casa aprende a conduzir as atividades.</p></figcaption>
+              </figure>
+            </a>
           </li>
           <li class="m-larga">
-            <figure>
-              <img src="imagens/conversa-com-gestores.jpg" alt="Reunião ao redor de uma mesa com gestora, enfermeira e profissional de Educação Física" loading="lazy" width="1200" height="800">
-              <figcaption><h3>Conversa com gestores</h3><p>O exercício entra no planejamento e no orçamento.</p></figcaption>
-            </figure>
+            <a href="#foto-5" aria-label="Ampliar foto: Conversa com gestores">
+              <figure>
+                <img src="imagens/conversa-com-gestores.jpg" alt="Reunião ao redor de uma mesa com gestora, enfermeira e profissional de Educação Física" loading="lazy" width="1200" height="800">
+                <figcaption><h3>Conversa com gestores</h3><p>O exercício entra no planejamento e no orçamento.</p></figcaption>
+              </figure>
+            </a>
           </li>
           <li class="m-larga">
-            <figure>
-              <img src="imagens/danca-sentada.jpg" alt="Idosos sorrindo durante uma aula de dança sentados em cadeiras" loading="lazy" width="1200" height="800">
-              <figcaption><h3>Dança sentada</h3><p>Música para trabalhar o corpo, a memória e a alegria.</p></figcaption>
-            </figure>
+            <a href="#foto-6" aria-label="Ampliar foto: Dança sentada">
+              <figure>
+                <img src="imagens/danca-sentada.jpg" alt="Idosos sorrindo durante uma aula de dança sentados em cadeiras" loading="lazy" width="1200" height="800">
+                <figcaption><h3>Dança sentada</h3><p>Música para trabalhar o corpo, a memória e a alegria.</p></figcaption>
+              </figure>
+            </a>
           </li>
         </ul>
 
@@ -263,14 +320,10 @@
           </div>
         </div>
 
-        <form class="caixa-doacao" aria-label="Doação" novalidate>
-          <ol class="caixa-passos" aria-label="Etapas da doação">
-            <li class="atual" data-passo="1"><span>1</span>Valor</li>
-            <li data-passo="2"><span>2</span>Pagamento</li>
-          </ol>
+        <!-- A frase de impacto muda conforme o valor marcado (seletor :has no CSS) -->
+        <div class="caixa-doacao" role="group" aria-labelledby="titulo-caixa">
+          <h3 id="titulo-caixa" class="caixa-titulo">Escolha sua doação</h3>
 
-          <!-- Etapa 1: escolher o valor -->
-          <div class="etapa" id="etapa-valor">
           <fieldset class="frequencia">
             <legend class="sr">Frequência</legend>
             <input type="radio" name="frequencia" id="f-mensal" value="mensal" checked>
@@ -290,48 +343,31 @@
             <label class="outro" for="v-outro">
               <span class="sr">Outro valor em reais</span>
               <span aria-hidden="true">R$</span>
-              <input type="number" id="v-outro" min="10" step="5" placeholder="Outro">
+              <input type="number" id="v-outro" min="10" step="1" placeholder="Outro">
             </label>
           </fieldset>
 
-          <p class="impacto-doacao" id="impacto-doacao" aria-live="polite">Com <strong>R$&nbsp;80 por mês</strong> você paga 4 horas de aula com profissional em uma instituição.</p>
-          <p class="erro-valor" id="erro-valor" role="alert" hidden>Digite um valor a partir de R$&nbsp;10.</p>
+          <p class="erro-valor">Digite um valor a partir de R$&nbsp;10.</p>
 
-          <button type="submit" class="btn btn-laranja btn-cheio" id="continuar">Continuar com R$&nbsp;80 por mês
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <p class="seguranca">
-            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Você doa direto pelo app do seu banco. Não pedimos dados do cartão.
+          <p class="impacto-doacao">
+            <span class="imp imp-30">Com <strong>R$&nbsp;30<span class="so-mensal"> por mês</span></strong> você garante um kit de faixa elástica e bastão para quem está começando.</span>
+            <span class="imp imp-80">Com <strong>R$&nbsp;80<span class="so-mensal"> por mês</span></strong> você paga 4 horas de aula com profissional em uma instituição.</span>
+            <span class="imp imp-250">Com <strong>R$&nbsp;250<span class="so-mensal"> por mês</span></strong> você financia uma oficina de formação para os cuidadores de uma instituição.</span>
+            <span class="imp imp-outro">Todo valor conta. A cada <strong>R$&nbsp;20</strong> você paga uma hora de aula com profissional.</span>
           </p>
-          </div>
 
-          <!-- Etapa 2: como pagar -->
-          <div class="etapa" id="etapa-pagamento" hidden>
-            <button type="button" class="voltar-etapa" id="voltar-etapa">
-              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Trocar valor
-            </button>
-
-            <p class="resumo" tabindex="-1" id="resumo-doacao">Sua doação: <strong>R$&nbsp;80 por mês</strong></p>
-
+          <div class="caixa-pix">
+            <h4>Como doar pelo Pix</h4>
             <ol class="como-pagar">
               <li>Copie a chave Pix abaixo.</li>
-              <li>No app do seu banco, escolha Pix, cole a chave e digite <strong class="valor-escolhido">R$&nbsp;80</strong>.</li>
-              <li class="so-mensal">Para doar todo mês, use a opção de agendar o Pix com repetição mensal.</li>
+              <li>No app do seu banco, escolha Pix, cole a chave e digite o valor que você escolheu.</li>
+              <li class="so-mensal">Para doar todo mês, agende o Pix com repetição mensal.</li>
               <li>Envie o comprovante para doe@movimentolongevo.exemplo e receba seu recibo.</li>
             </ol>
 
-            <div class="pix">
-              <p class="pix-rotulo">Chave Pix (CNPJ fictício)</p>
-              <div class="pix-linha">
-                <code id="chave-pix">00.000.000/0001-00</code>
-                <button type="button" class="btn btn-laranja" id="copiar-pix">
-                  <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                  <span>Copiar chave</span>
-                </button>
-              </div>
-            </div>
+            <p class="pix-rotulo">Chave Pix (CNPJ fictício)</p>
+            <code class="chave-pix" tabindex="0">00.000.000/0001-00</code>
+            <p class="pix-dica">Um clique seleciona a chave inteira. Depois é só copiar.</p>
 
             <details class="banco">
               <summary>Prefiro depósito ou transferência</summary>
@@ -342,8 +378,13 @@
                 <dt>Favorecido</dt><dd>Associação Movimento Longevo</dd>
               </dl>
             </details>
+
+            <p class="seguranca">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Você doa direto pelo app do seu banco. Não pedimos dados do cartão.
+            </p>
           </div>
-        </form>
+        </div>
       </div>
     </section>
 
@@ -353,9 +394,10 @@
         <header>
           <p class="sobretitulo">Antes de doar</p>
           <h2 id="titulo-duvidas">Dúvidas frequentes</h2>
-          <p>Não achou o que procurava? <a href="#contato" data-assunto="doacao">Fale com a gente</a>.</p>
+          <p>Não achou o que procurava? <a href="#contato">Fale com a gente</a>.</p>
         </header>
 
+        <!-- details com o mesmo name: abrir uma pergunta fecha a outra -->
         <div class="perguntas">
           <details name="duvida" open>
             <summary>Recebo recibo da minha doação?</summary>
@@ -385,7 +427,7 @@
     <section class="faixa-voluntario" aria-labelledby="titulo-voluntario">
       <div class="container faixa-conteudo">
         <h2 id="titulo-voluntario">É profissional de Educação Física, fisioterapia ou enfermagem? <em>Doe duas horas por semana.</em></h2>
-        <a class="btn btn-escuro" href="#contato" data-assunto="voluntario">Quero ser voluntário</a>
+        <a class="btn btn-escuro" href="#contato">Quero ser voluntário</a>
       </div>
     </section>
 
@@ -407,16 +449,18 @@
           </address>
         </div>
 
-        <form class="formulario" action="#" method="post" novalidate>
+        <!-- O site não tem servidor: o formulário abre o programa de e-mail com a mensagem pronta.
+             Os erros aparecem pelo seletor :user-invalid, só depois que a pessoa mexe no campo. -->
+        <form class="formulario" action="mailto:contato@movimentolongevo.exemplo" method="post" enctype="text/plain">
           <div class="campo">
             <input type="text" id="nome" name="nome" placeholder=" " required minlength="2" autocomplete="name" aria-describedby="erro-nome">
             <label for="nome">Seu nome</label>
-            <p class="erro" id="erro-nome"></p>
+            <p class="erro" id="erro-nome">Escreva seu nome, com pelo menos 2 letras.</p>
           </div>
           <div class="campo">
             <input type="email" id="email" name="email" placeholder=" " required autocomplete="email" aria-describedby="erro-email">
             <label for="email">Seu e-mail</label>
-            <p class="erro" id="erro-email"></p>
+            <p class="erro" id="erro-email">Digite um e-mail válido, como nome@email.com.</p>
           </div>
           <div class="campo">
             <select id="assunto" name="assunto" required>
@@ -428,19 +472,12 @@
             <label for="assunto" class="fixo">Assunto</label>
           </div>
           <div class="campo">
-            <textarea id="mensagem" name="mensagem" rows="4" placeholder=" " required minlength="10" maxlength="600" aria-describedby="erro-mensagem contador-mensagem"></textarea>
+            <textarea id="mensagem" name="mensagem" rows="4" placeholder=" " required minlength="10" maxlength="600" aria-describedby="erro-mensagem"></textarea>
             <label for="mensagem">Mensagem</label>
-            <p class="erro" id="erro-mensagem"></p>
-            <p class="contador-texto" id="contador-mensagem" aria-live="polite">0 de 600</p>
+            <p class="erro" id="erro-mensagem">Escreva uma mensagem com pelo menos 10 letras.</p>
           </div>
+          <p class="form-nota">Ao enviar, seu programa de e-mail abre com a mensagem pronta.</p>
           <button class="btn btn-laranja" type="submit">Enviar mensagem</button>
-
-          <div class="enviado" id="enviado" tabindex="-1" hidden>
-            <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M14 25l7 7 13-15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <h3>Mensagem enviada.</h3>
-            <p>Obrigado, <span id="enviado-nome"></span>. Vamos responder no seu e-mail em até dois dias úteis.</p>
-            <button type="button" class="link-seta" id="nova-mensagem">Escrever outra mensagem</button>
-          </div>
         </form>
       </div>
     </section>
@@ -479,28 +516,110 @@
     </div>
   </footer>
 
-  <button id="voltar-topo" class="voltar-topo" type="button" aria-label="Voltar ao topo">
+  <!-- Botão de voltar ao topo, com anel que mostra quanto da página já foi lido -->
+  <a class="voltar-topo" href="#inicio" aria-label="Voltar ao topo">
     <svg class="anel" viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="23"/></svg>
     <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
+  </a>
 
-  <a class="barra-doar" href="#doar" id="barra-doar">
+  <!-- Barra fixa de doar (só aparece no celular) -->
+  <a class="barra-doar" href="#doar">
     <span>Mantenha um idoso em movimento</span>
     <strong>Doar</strong>
   </a>
 
-  <dialog id="janela-foto" class="janela-foto" aria-label="Foto ampliada">
-    <img alt="">
-    <div class="janela-rodape">
-      <p><span class="janela-contador"></span><span class="janela-legenda"></span></p>
-      <div class="janela-botoes">
-        <button type="button" class="ant" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" class="prox" aria-label="Próxima foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" class="fechar" aria-label="Fechar"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
-      </div>
-    </div>
-  </dialog>
+  <!-- ===================== FOTOS AMPLIADAS =====================
+       Cada janela aparece quando o endereço termina com o id dela (#foto-1...).
+       O link "Fechar" aponta para um id que não existe, então a página não pula. -->
+  <div class="janela" id="foto-1" role="dialog" aria-label="Foto ampliada: Alongamento em grupo">
+    <a class="janela-fundo" href="#fechar-foto" aria-label="Fechar foto" tabindex="-1"></a>
+    <figure class="janela-conteudo">
+      <img src="imagens/alongamento-em-grupo.jpg" alt="Grupo de idosos fazendo alongamento sentados em círculo, com uma professora de Educação Física" loading="lazy" width="1200" height="800">
+      <figcaption>
+        <p><span class="janela-contador">1 / 6</span>Alongamento em grupo. Aulas semanais com profissional habilitado, adaptadas a cada nível de mobilidade.</p>
+        <nav class="janela-botoes" aria-label="Navegar pelas fotos">
+          <a href="#foto-6" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#foto-2" aria-label="Próxima foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#fechar-foto" aria-label="Fechar foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+        </nav>
+      </figcaption>
+    </figure>
+  </div>
 
-  <script src="js/script.js"></script>
+  <div class="janela" id="foto-2" role="dialog" aria-label="Foto ampliada: Kit de materiais">
+    <a class="janela-fundo" href="#fechar-foto" aria-label="Fechar foto" tabindex="-1"></a>
+    <figure class="janela-conteudo">
+      <img src="imagens/kit-de-materiais.jpg" alt="Mesa com faixas elásticas, bastões, halteres leves, bolas e cones" loading="lazy" width="1200" height="800">
+      <figcaption>
+        <p><span class="janela-contador">2 / 6</span>Kit de materiais. Faixas, bastões e bolas entregues a cada casa parceira.</p>
+        <nav class="janela-botoes" aria-label="Navegar pelas fotos">
+          <a href="#foto-1" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#foto-3" aria-label="Próxima foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#fechar-foto" aria-label="Fechar foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+        </nav>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="janela" id="foto-3" role="dialog" aria-label="Foto ampliada: Caminhada no jardim">
+    <a class="janela-fundo" href="#fechar-foto" aria-label="Fechar foto" tabindex="-1"></a>
+    <figure class="janela-conteudo">
+      <img src="imagens/caminhada-no-jardim.jpg" alt="Idosos caminhando com bengala e andador, acompanhados de cuidadores em um jardim" loading="lazy" width="1200" height="800">
+      <figcaption>
+        <p><span class="janela-contador">3 / 6</span>Caminhada no jardim. Passeios guiados que unem exercício, sol e conversa.</p>
+        <nav class="janela-botoes" aria-label="Navegar pelas fotos">
+          <a href="#foto-2" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#foto-4" aria-label="Próxima foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#fechar-foto" aria-label="Fechar foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+        </nav>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="janela" id="foto-4" role="dialog" aria-label="Foto ampliada: Oficina com cuidadores">
+    <a class="janela-fundo" href="#fechar-foto" aria-label="Fechar foto" tabindex="-1"></a>
+    <figure class="janela-conteudo">
+      <img src="imagens/oficina-com-cuidadores.jpg" alt="Cuidadores e idosos praticando juntos um exercício de braços, sentados em semicírculo" loading="lazy" width="1200" height="800">
+      <figcaption>
+        <p><span class="janela-contador">4 / 6</span>Oficina com cuidadores. A equipe da casa aprende a conduzir as atividades.</p>
+        <nav class="janela-botoes" aria-label="Navegar pelas fotos">
+          <a href="#foto-3" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#foto-5" aria-label="Próxima foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#fechar-foto" aria-label="Fechar foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+        </nav>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="janela" id="foto-5" role="dialog" aria-label="Foto ampliada: Conversa com gestores">
+    <a class="janela-fundo" href="#fechar-foto" aria-label="Fechar foto" tabindex="-1"></a>
+    <figure class="janela-conteudo">
+      <img src="imagens/conversa-com-gestores.jpg" alt="Reunião ao redor de uma mesa com gestora, enfermeira e profissional de Educação Física" loading="lazy" width="1200" height="800">
+      <figcaption>
+        <p><span class="janela-contador">5 / 6</span>Conversa com gestores. O exercício entra no planejamento e no orçamento.</p>
+        <nav class="janela-botoes" aria-label="Navegar pelas fotos">
+          <a href="#foto-4" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#foto-6" aria-label="Próxima foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#fechar-foto" aria-label="Fechar foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+        </nav>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="janela" id="foto-6" role="dialog" aria-label="Foto ampliada: Dança sentada">
+    <a class="janela-fundo" href="#fechar-foto" aria-label="Fechar foto" tabindex="-1"></a>
+    <figure class="janela-conteudo">
+      <img src="imagens/danca-sentada.jpg" alt="Idosos sorrindo durante uma aula de dança sentados em cadeiras" loading="lazy" width="1200" height="800">
+      <figcaption>
+        <p><span class="janela-contador">6 / 6</span>Dança sentada. Música para trabalhar o corpo, a memória e a alegria.</p>
+        <nav class="janela-botoes" aria-label="Navegar pelas fotos">
+          <a href="#foto-5" aria-label="Foto anterior"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#foto-1" aria-label="Voltar à primeira foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#fechar-foto" aria-label="Fechar foto"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+        </nav>
+      </figcaption>
+    </figure>
+  </div>
+
 </body>
 </html>

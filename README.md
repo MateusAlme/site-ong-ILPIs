@@ -2,7 +2,7 @@
 
 Projeto da disciplina de Introdução à Computação (2026.2).
 
-ONG fictícia que leva programas de exercício físico a idosos de Instituições de Longa Permanência (ILPIs). Página única com HTML5 semântico, CSS3 responsivo (`@media` para celular, tablet e desktop) e todas as mídias salvas localmente.
+ONG fictícia que leva programas de exercício físico a idosos de Instituições de Longa Permanência (ILPIs). Página única feita só com HTML5 semântico e CSS3, sem JavaScript, responsiva com `@media` para celular, tablet e desktop, e com todas as mídias salvas localmente.
 
 ## Estrutura
 
@@ -10,10 +10,19 @@ ONG fictícia que leva programas de exercício físico a idosos de Instituiçõe
 site-ong/
 ├── index.html
 ├── css/style.css
-├── js/script.js     (efeitos ao rolar, galeria ampliada, calculadora de doação)
 ├── fontes/          (Noto Serif Display e Lato)
-└── imagens/         (logo, fotos dos projetos e da equipe)
+└── imagens/         (logo, fotos dos projetos, da equipe e dos depoimentos)
 ```
+
+## Interações feitas só com CSS
+
+- Menu do celular e fotos ampliadas: seletor `:target`.
+- Frase de impacto da doação: `:checked` e `:has()`.
+- Depoimentos: rolagem lateral com `scroll-snap`.
+- Erros do formulário: `:user-invalid`.
+- Efeitos ao rolar a página: `animation-timeline`. Navegadores sem suporte mostram tudo parado e visível.
+
+O formulário de contato abre o programa de e-mail (`mailto:`), porque o site não tem servidor.
 
 ## Como abrir
 
